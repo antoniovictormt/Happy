@@ -72,6 +72,10 @@
   align-items: center;
 }
 
+#page-map  .leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom .leaflet-control-container .leaflet-bottom.leaflet-right .leaflet-control-attribution.leaflet-control a {
+  display: none;
+}
+
 #page-map .map-popup .leaflet-popup-tip-container {
   display: none;
 }
@@ -97,4 +101,31 @@
 
 #page-map .create-orphanage:hover{
   background: #16e6de;
+}
+
+
+@media (max-width: 650px) {
+  #page-map aside {
+    width: 185px;
+    padding: 15px;
+  }
+
+  #page-map aside h2 {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 28px;
+  }
+  
+  #page-map aside p {
+    line-height: 28px;
+    margin-top: 24px;
+  }
+  
+  #page-map aside footer {  
+    line-height: 24px;
+  }
+  
+  #page-map aside footer strong {
+    font-weight: 800;
+  }
 }

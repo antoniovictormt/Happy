@@ -49,6 +49,10 @@ export class createOrphanages1602794694300 implements MigrationInterface {
           name: 'open_on_weekends',
           type: 'bolean',
           default: false,
+        },
+        {
+          name: 'whatsapp',
+          type: 'varchar',
         }
       ],
     }))
@@ -58,7 +62,6 @@ export class createOrphanages1602794694300 implements MigrationInterface {
     //Desfazer o que foi feito no UP
     //typeorm migration:revert - reverte a tabela
     await queryRunner.dropTable('orphanages');
-
   }
 
 }

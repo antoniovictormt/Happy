@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Image, View, ScrollView, Text, StyleSheet, Dimensions, Linking, TouchableOpacity } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import { Feather } from '@expo/vector-icons';
+import { Feather, FontAwesome } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
 
 import api from '../services/api';
 import mapMarkerImg from '../images/map-marker.png';
+import { RectButton } from 'react-native-gesture-handler';
 
 interface OrphanageDeatilsRouteParams {
   id: number,
@@ -19,6 +20,7 @@ interface Orphanage {
   instructions: string,
   opening_hours: string,
   open_on_weekends: string,
+  whatsapp: string,
   images: Array<
     {
       id: number,
@@ -48,6 +50,11 @@ export default function OrphanageDetails() {
 
   function handleGoogleMapsRoutes() {
     Linking.openURL(`https://www.google.com/maps/dir/?api=1&destination=${orphanage?.latitude},${orphanage?.longitude}`)
+  }
+
+  function handleWhatsapp() {
+    /* b */
+    Linking.openURL(`https://wa.me/${orphanage?.whatsapp}`)
   }
 
   console.log(orphanage)
@@ -124,10 +131,10 @@ export default function OrphanageDetails() {
             )}
         </View>
 
-        {/* <RectButton style={styles.contactButton} onPress={() => { }}>
+        <RectButton style={styles.contactButton} onPress={(handleWhatsapp)}>
           <FontAwesome name="whatsapp" size={24} color="#FFF" />
           <Text style={styles.contactButtonText}>Entrar em contato</Text>
-        </RectButton> */}
+        </RectButton>
       </View>
     </ScrollView>
   )

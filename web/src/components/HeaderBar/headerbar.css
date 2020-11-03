@@ -1,0 +1,45 @@
+header.app-headerbar {
+  height: 100%;
+  padding: 20px;
+  background: linear-gradient(329.54deg, #15B6D6 0%, #15D6D6 100%);
+  
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header.app-headerbar img {
+  width: 48px;
+}
+
+header.app-headerbar .app-headerbar-b a,
+header.app-headerbar .app-headerbar-b button {
+  width: 48px;
+  height: 48px;
+
+  border: 0;
+
+  background: #12AFCB;
+  border-radius: 16px;
+
+  cursor: pointer;
+
+  transition: background-color 0.2s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+header.app-headerbar .app-headerbar-b a:hover,
+header.app-headerbar .app-headerbar-b button:hover {
+  background: #17D6EB;
+}
+
+@media (min-width: 750px) {
+  header.app-headerbar {
+    display: none;
+  }
+}

@@ -1,0 +1,8 @@
+/web/node_modules
+/web/.env
+
+/server/node_modules
+/server/uploads
+
+/mobile/.expo
+/mobile/node_modules

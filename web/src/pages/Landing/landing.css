@@ -8,14 +8,19 @@
   align-items: center;
 }
 
+#page-landing .wrapper-logo-happy{
+  position: absolute;
+  z-index: 10;
+}
+
 #page-landing .content-wrapper {
   position: relative;
 
   width: 100%;
   max-width: 1100px;
-
-  height: 100%;
-  max-height: 666px;
+  height: 100%;  
+  max-height: 680px;
+  margin: 0 auto;
 
   display: flex;
   align-items: flex-start;
@@ -78,4 +83,19 @@
 
 .content-wrapper .enter-app:hover {
   background: #96feff;
+}
+
+@media (max-width: 650px) {
+  #page-landing .content-wrapper {
+    background: url('../../assets/landing.svg') no-repeat 40% center;
+    padding: 10px
+  }
+
+  .content-wrapper .location {
+    padding: 10px;
+  }
+
+  .content-wrapper .enter-app {
+    margin-bottom: 15px;
+  }
 }

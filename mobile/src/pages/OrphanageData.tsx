@@ -20,6 +20,7 @@ export default function OrphanageData() {
   const [name, setName] = useState('');
   const [opening_hours, setOpeningHours] = useState('');
   const [open_on_weekends, setOpenOnWeekends] = useState(true);
+  const [whatsapp, setWhatsapp] = useState('');
 
   const navigation = useNavigation();
   const route = useRoute();
@@ -47,6 +48,7 @@ export default function OrphanageData() {
     data.append('name', name);
     data.append('opening_hours', opening_hours);
     data.append('open_on_weekends', String(open_on_weekends));
+    data.append('whatsapp', whatsapp)
 
     images.forEach((image, index) => {
       data.append('images', {
@@ -86,7 +88,7 @@ export default function OrphanageData() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ padding: 24 }}>
-      <Text style={styles.title}>Dados</Text>
+      <Text style={styles.title}>Formulário de Cadastro</Text>
 
       <Text style={styles.label}>Nome</Text>
       <TextInput
@@ -103,10 +105,12 @@ export default function OrphanageData() {
         onChangeText={setAbout}
       />
 
-      {/*  <Text style={styles.label}>Whatsapp</Text>
+      <Text style={styles.label}>Whatsapp</Text>
       <TextInput
         style={styles.input}
-      /> */}
+        value={whatsapp}
+        onChangeText={setWhatsapp}
+      />
 
       <Text style={styles.label}>Fotos</Text>
 
