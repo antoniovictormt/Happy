@@ -48,7 +48,9 @@ This project was made using the follow technologies:
 ## :green_book: How to run
 
 ### Clone Repository
+```bash
 $ git clone https://github.com/antoniovictormt/happy.git
+```
 
 ### Run Web Project
 💻 Entre na pasta [`web/`](web/) e execute os seguintes comandos:
@@ -64,6 +66,7 @@ $ npm start
 ```
 </details>
 
+<details>
 <summary><i>com <b>yarn</b></i></summary>
 
 ```bash
@@ -73,7 +76,7 @@ $ yarn
 $ yarn start
 ```
 </details>
-⚠️ Go to <http://localhost:3000/> to see the result.
+> ⚠️ Go to http://localhost:3000/ to see the result.
 
 ### Run Server Project
 🌐 Entre na pasta [`server/`](server/) e execute os seguintes comandos:
@@ -103,8 +106,8 @@ $ yarn typeorm migration:run
 $ yarn dev
 ```
 </details>
-⚠️ Go to <http://localhost:3333/> to see the result.
-⚠️ O Banco de Dados fica salvo em [`server/src/database/database.sqlite`](server/src/database/database.sqlite)
+> ⚠️ Go to http://localhost:3333/ to see the result.
+> ⚠️ O Banco de Dados fica salvo em [`server/src/database/database.sqlite`](server/src/database/database.sqlite)
 
 ### Run Mobile Project
 
@@ -131,5 +134,5 @@ $ yarn
 $ yarn start
 ```
 </details>
-⚠️ Go to <http://localhost:19002/> to see the result.
-⚠️ No arquivo **api.ts** dentro da pasta [`mobile/src/services/`](mobile/src/services/) é necessário colocar o seu IP local na variável baseURL, mantendo a porta 3333 do servidor.
+> ⚠️ Go to http://localhost:19002/ to see the result.
+> ⚠️ No arquivo **api.ts** dentro da pasta [`mobile/src/services/`](mobile/src/services/) é necessário colocar o seu IP local na variável baseURL, mantendo a porta 3333 do servidor.
