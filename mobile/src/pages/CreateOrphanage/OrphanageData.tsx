@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { ScrollView, View, StyleSheet, Switch, Text, TextInput, TouchableOpacity, Image } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { RectButton } from 'react-native-gesture-handler';
+import { BorderlessButton, RectButton } from 'react-native-gesture-handler';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
-import api from '../services/api';
+
+import api from '../../services/api';
 
 interface OrphanageDataRouteParams {
   position: {
@@ -20,6 +21,7 @@ export default function OrphanageData() {
   const [name, setName] = useState('');
   const [opening_hours, setOpeningHours] = useState('');
   const [open_on_weekends, setOpenOnWeekends] = useState(true);
+  const [previewImages, setPreviewImages] = useState<string[]>([]);
   const [whatsapp, setWhatsapp] = useState('');
 
   const navigation = useNavigation();
@@ -86,6 +88,14 @@ export default function OrphanageData() {
     setImages([...images, image]);
   }
 
+  function handleRemoveImage(i: number) {
+    const currentFileImages = images.filter((image, index) => i === index ? null : image)
+    const currentImages = previewImages.filter((image, index) => i === index ? null : image);
+
+    setImages(currentFileImages)
+    setPreviewImages(currentImages);
+  };
+
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ padding: 24 }}>
       <Text style={styles.title}>Formulário de Cadastro</Text>
@@ -114,21 +124,27 @@ export default function OrphanageData() {
 
       <Text style={styles.label}>Fotos</Text>
 
-      <View style={styles.uploadedImagesContainer}>
-        {images.map(image => {
+      <View>
+        {images.map((image, i) => {
           return (
-            <Image
-              key={image}
-              source={{ uri: image }}
-              style={styles.uploadedImage}
-            />
+            <View style={styles.uploadedImagesContainer}>
+              <BorderlessButton style={styles.imageButton} onPress={() => handleRemoveImage(i)}>
+                <Feather name="x" size={24} color="#ff669d" />
+              </BorderlessButton>
+              <Image
+                key={image}
+                source={{ uri: image }}
+                style={styles.uploadedImage} />
+            </View>
           )
         })}
       </View>
 
-      <TouchableOpacity style={styles.imagesInput} onPress={handleSelectedImages}>
-        <Feather name="plus" size={24} color="#15B6D6" />
-      </TouchableOpacity>
+      <View style={styles.uploadedImagesContainer}>
+        <TouchableOpacity style={styles.imagesInput} onPress={handleSelectedImages}>
+          <Feather name="plus" size={24} color="#15B6D6" />
+        </TouchableOpacity>
+      </View>
 
       <Text style={styles.title}>Visitação</Text>
 
@@ -170,30 +186,30 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    color: '#5c8599',
+    color: 'rgb(92, 133, 153)',
     fontSize: 24,
     fontFamily: 'Nunito_700Bold',
     marginBottom: 32,
     paddingBottom: 24,
     borderBottomWidth: 0.8,
-    borderBottomColor: '#D3E2E6'
+    borderBottomColor: 'rgb(211, 226, 230)'
   },
 
   label: {
-    color: '#8fa7b3',
+    color: 'rgb(143, 167, 179)',
     fontFamily: 'Nunito_600SemiBold',
     marginBottom: 8,
   },
 
   comment: {
     fontSize: 11,
-    color: '#8fa7b3',
+    color: 'rgb(143, 167, 179)',
   },
 
   input: {
-    backgroundColor: '#fff',
+    backgroundColor: 'rgb(255, 255, 255)',
     borderWidth: 1.4,
-    borderColor: '#d3e2e6',
+    borderColor: 'rgb(211, 226, 230)',
     borderRadius: 20,
     height: 56,
     paddingVertical: 18,
@@ -203,24 +219,38 @@ const styles = StyleSheet.create({
   },
 
   uploadedImagesContainer: {
-    flexDirection: 'row',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   uploadedImage: {
-    width: 64,
-    height: 64,
+    width: 96,
+    height: 96,
     borderRadius: 20,
     marginBottom: 32,
-    marginRight: 8,
+  },
+
+  imageButton: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    right: 0,
+    top: 0,
+    width: 50,
+    height: 50,
+    backgroundColor: 'rgb(255, 188, 212)',
+    borderRadius: 20,
   },
 
   imagesInput: {
     backgroundColor: 'rgba(255, 255, 255, 0.5)',
     borderStyle: 'dashed',
-    borderColor: '#96D2F0',
+    borderColor: 'rgb(150, 210, 240)',
     borderWidth: 1.4,
     borderRadius: 20,
-    height: 56,
+    width: 96,
+    height: 96,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 32,
@@ -234,7 +264,7 @@ const styles = StyleSheet.create({
   },
 
   nextButton: {
-    backgroundColor: '#15c3d6',
+    backgroundColor: 'rgb(21, 195, 214)',
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
@@ -245,6 +275,6 @@ const styles = StyleSheet.create({
   nextButtonText: {
     fontFamily: 'Nunito_800ExtraBold',
     fontSize: 16,
-    color: '#FFF',
+    color: 'rgb(255, 255, 255)',
   }
 })

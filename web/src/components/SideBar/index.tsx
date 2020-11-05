@@ -4,22 +4,24 @@ import { Link, useHistory } from 'react-router-dom';
 
 import mapMarker from '../../assets/map-marker.svg';
 
-import './headerbar.css';
+import "./styles.css";
 
-export default function HeaderBar() {
+export default function SideBar() {
   const { goBack } = useHistory();
 
   return (
-    <header className="app-headerbar">
+    <aside className="app-sidebar">
       <Link to='/'>
         <img src={mapMarker} alt="Happy" />
       </Link>
 
-      <div className="app-headerbar-b">
+      <footer>
         <button type="button" onClick={goBack}>
           <FiArrowLeft size={24} color="#FFF" />
         </button>
-      </div>
-    </header>
+      </footer>
+    </aside>
   )
 }
+
+

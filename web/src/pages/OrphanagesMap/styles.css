@@ -8,7 +8,7 @@
 
 #page-map aside {
   width: 440px;
-  background: linear-gradient(329.54deg, #29B6D1 0%, #00C7C7 100%);
+  background: linear-gradient(to top, rgb(0, 162, 255) 0%, rgba(102, 233, 40, 0.529) 100%);
   padding: 80px;
 
   display: flex;
@@ -63,13 +63,18 @@
 #page-map .map-popup .leaflet-popup-content a {
   width: 40px;
   height: 40px;
-  background: #15c3d6;
-  box-shadow: 17.2868px 27.6589px 41.4884px rgba(23, 142, 166, 0.16);
+  background: linear-gradient(45deg, rgb(0, 162, 255) 0%, rgba(102, 233, 40, 0.529) 100%);
   border-radius: 12px;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  transition: background-color 0.2s;
+}
+
+#page-map .map-popup .leaflet-popup-content a:hover {
+  background: linear-gradient(45deg, rgba(102, 233, 40, 0.529) 0%, rgb(0, 162, 255) 100%);
 }
 
 #page-map  .leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom .leaflet-control-container .leaflet-bottom.leaflet-right .leaflet-control-attribution.leaflet-control a {
@@ -89,7 +94,7 @@
 
   width: 64px;
   height: 64px;
-  background: #15c3d6;
+  background: linear-gradient(45deg, rgb(0, 162, 255) 0%, rgba(102, 233, 40, 0.529) 100%);
   border-radius: 20px;
 
   display: flex;
@@ -100,7 +105,7 @@
 }
 
 #page-map .create-orphanage:hover{
-  background: #16e6de;
+  background: linear-gradient(45deg, rgba(102, 233, 40, 0.529) 0%, rgb(0, 162, 255) 100%);
 }
 
 

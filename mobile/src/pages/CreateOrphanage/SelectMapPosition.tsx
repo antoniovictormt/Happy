@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Dimensions, Text } from 'react-native';
-
 import { useNavigation } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 import MapView, { MapEvent, Marker } from 'react-native-maps';
 
-import mapMarker from '../images/map-marker.png';
+import mapMarker from '../../images/map-marker.png';
 
 export default function SelectMapPosition() {
   const navigation = useNavigation();

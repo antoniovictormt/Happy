@@ -4,12 +4,12 @@ import { FiPlus, FiX } from "react-icons/fi";
 import { LeafletMouseEvent } from "leaflet";
 import { useHistory } from "react-router-dom";
 
-import HeaderBar from "../../components/HeaderBar/HeaderBar";
-import SideBar from "../../components/SideBar/SideBar";
+import HeaderBar from "../../components/HeaderBar";
+import SideBar from "../../components/SideBar";
 import api from "../../services/api";
 import mapIcon from "../../utils/mapIcon";
 
-import "./orphanage-create.css";
+import "./styles.css";
 
 export default function CreateOrphanage() {
   const history = useHistory();

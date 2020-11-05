@@ -4,6 +4,7 @@ import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import mapMarker from '../images/map-marker.png';
 import api from '../services/api';
@@ -74,9 +75,12 @@ export default function OrphanagesMap() {
           {orphanages.length} orfanatos encontrados
         </Text>
 
-        <RectButton style={styles.createOrphanageButton} onPress={handleNavigateToCreateOrphanage}>
-          <Feather name="plus" size={20} color="#ffffff" />
-        </RectButton>
+        <LinearGradient
+          colors={['rgb(0, 162, 255)', 'rgba(102, 233, 40, 0.529)']}>
+          <RectButton style={styles.createOrphanageButton} onPress={handleNavigateToCreateOrphanage}>
+            <Feather name="plus" size={20} color="#ffffff" />
+          </RectButton>
+        </LinearGradient>
 
       </View>
     </View>
@@ -136,7 +140,6 @@ const styles = StyleSheet.create({
   createOrphanageButton: {
     width: 56,
     height: 56,
-    backgroundColor: '#15c3d6',
     borderTopEndRadius: 20,
 
     justifyContent: 'center',

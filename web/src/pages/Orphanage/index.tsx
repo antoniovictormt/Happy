@@ -4,12 +4,12 @@ import { FaWhatsapp } from "react-icons/fa";
 import { Map, Marker, TileLayer } from "react-leaflet";
 import { useParams } from 'react-router-dom';
 
-import HeaderBar from "../../components/HeaderBar/HeaderBar";
-import SideBar from '../../components/SideBar/SideBar';
+import HeaderBar from "../../components/HeaderBar";
+import SideBar from '../../components/SideBar';
 import api from "../../services/api";
 import mapIcon from "../../utils/mapIcon";
 
-import './orphanage.css';
+import "./styles.css";
 
 interface Orphanage {
   name: string,

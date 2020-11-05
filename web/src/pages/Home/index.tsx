@@ -3,7 +3,7 @@ import { FiArrowRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-import './landing.css';
+import "./styles.css";
 
 import logoImg from '../../assets/logo.svg';
 import markerImg from '../../assets/map-marker.svg';
@@ -39,7 +39,7 @@ function Landing() {
         </div>
 
         <Link to="/map" className="enter-app">
-          <FiArrowRight size={26} color="rgba(0, 0, 0, 0.6)" />
+          <FiArrowRight size={26} color="rgb(255, 255, 255)" />
         </Link>
       </motion.div>
     </div>

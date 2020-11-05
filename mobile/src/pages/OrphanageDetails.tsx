@@ -146,12 +146,12 @@ const styles = StyleSheet.create({
   },
 
   imagesContainer: {
-    height: 240,
+    maxHeight: 440,
   },
 
   image: {
     width: Dimensions.get('window').width,
-    height: 240,
+    height: 440,
     resizeMode: 'cover',
   },
 

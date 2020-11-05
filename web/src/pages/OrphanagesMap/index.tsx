@@ -8,7 +8,7 @@ import api from '../../services/api';
 import mapIcon from "../../utils/mapIcon";
 import mapMarker from '../../assets/map-marker.svg';
 
-import './orphanages-map.css';
+import "./styles.css";
 
 interface Orphanage {
   id: number;
@@ -60,7 +60,7 @@ function OrphanagesMap() {
               <Popup closeButton={false} minWidth={240} maxWidth={240} className="map-popup">
                 {orphanage.name}
                 <Link to={`/orphanages/${orphanage.id}`}>
-                  <FiArrowRight size={20} color="#ffffff" />
+                  <FiArrowRight size={20} color="rgb(255, 255, 255)" />
                 </Link>
               </Popup>
             </Marker>
@@ -69,7 +69,7 @@ function OrphanagesMap() {
       </Map>
 
       <Link to="/orphanages/create" className="create-orphanage">
-        <FiPlus size={32} color="#ffffff" />
+        <FiPlus size={32} color="rgb(255, 255, 255)" />
       </Link>
     </div>
   );
