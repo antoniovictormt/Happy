@@ -1,49 +1,65 @@
 import React from 'react';
 import { FiArrowRight } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 
-import "./styles.css";
+import {
+  Container,
+  WrapperAnimation,
+  WrapperTitle,
+  WrapperLogo,
+  Inner,
+  Header,
+  HeaderContainer,
+  Logo,
+  Location,
+  City,
+  State,
+  AccessRestrict,
+  Content,
+  Title,
+  SubTitle,
+  Link,
+} from './styles';
 
-import logoImg from '../../assets/logo.svg';
+import logo from '../../assets/logo.svg';
 import markerImg from '../../assets/map-marker.svg';
 
-function Landing() {
+export default function Home() {
   return (
-    <div id="page-landing">
-      <motion.div
-        className="wrapper-logo-happy"
+    <Container>
+      <WrapperAnimation
         initial={{ scale: 0 }}
         animate={{ scale: 2 }}
-        transition={{ duration: 2.5, repeat: 1, repeatType: "reverse" }}
-      >
-        <img src={markerImg} alt="Logo happy" />
-      </motion.div>
+        transition={{ duration: 1.5, repeat: 1, repeatType: "reverse" }}>
+        <WrapperTitle>Bem Vindo a Recife, Pernambuco</WrapperTitle>
+        <br />
+        <WrapperLogo src={markerImg} alt="Logo happy" />
+      </WrapperAnimation>
 
-      <motion.div
-        className="content-wrapper"
+      <Inner
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 5.0, duration: 0.8 }}
-      >
-        <img src={logoImg} alt="logo Happy" />
+        transition={{ delay: 3.0, duration: 0.8 }}>
+        <Header>
+          <HeaderContainer>
+            <Logo src={logo} alt="Happy" />
 
-        <main>
-          <h1>Leve felicidade para o mundo</h1>
-          <p>Visite organatos e mude o dia de muitas crianças.</p>
-        </main>
+            <Location>
+              <City>Recife</City>
+              <State>Pernambuco</State>
+            </Location>
+          </HeaderContainer>
+          <AccessRestrict to="/login">Acesso restrito</AccessRestrict>
+        </Header>
 
-        <div className="location">
-          <strong>Recife</strong>
-          <span>Pernambuco</span>
-        </div>
+        <Content>
+          <Title>Leve Felicidade para o mundo</Title>
+          <SubTitle>Visite orfanatos e mude o dia de muitas crianças.</SubTitle>
+        </Content>
 
-        <Link to="/map" className="enter-app">
+        <Link to="/map">
           <FiArrowRight size={26} color="rgb(255, 255, 255)" />
         </Link>
-      </motion.div>
-    </div>
+      </Inner>
+    </Container>
   );
 }
-
-export default Landing;

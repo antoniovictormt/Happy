@@ -2,7 +2,6 @@
 /web/.env
 
 /server/node_modules
-/server/uploads
 
 /mobile/.expo
 /mobile/node_modules

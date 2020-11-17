@@ -1,27 +1,85 @@
 import React from 'react';
-import { FiArrowLeft } from 'react-icons/fi';
-import { Link, useHistory } from 'react-router-dom';
 
-import mapMarker from '../../assets/map-marker.svg';
+import {
+  Container,
+  FixedContainer,
+  Header,
+  Icon,
+  GroupIcon,
+  Link,
+  Title,
+  SubTitle,
+  Footer,
+  State,
+  City,
+  Button
+} from './styles';
+import logo from '../../assets/map-marker.svg';
 
-import "./styles.css";
+interface SidebarChildren {
+  children: React.ReactNode;
+};
 
-export default function SideBar() {
-  const { goBack } = useHistory();
-
-  return (
-    <aside className="app-sidebar">
-      <Link to='/'>
-        <img src={mapMarker} alt="Happy" />
-      </Link>
-
-      <footer>
-        <button type="button" onClick={goBack}>
-          <FiArrowLeft size={24} color="#FFF" />
-        </button>
-      </footer>
-    </aside>
-  )
+interface ButtonProps {
+  children: React.ReactNode;
+  type?: 'button' | 'submit';
+  onClick(e: React.MouseEvent<HTMLElement>): void;
+  isActive?: true | false;
 }
 
+interface IconProps {
+  children: React.ReactNode;
+  type?: 'button' | 'submit';
+  onClick(e: React.MouseEvent<HTMLElement>): void;
+  isActive: true | false;
+}
 
+function Sidebar({ children }: SidebarChildren) {
+  return <Container>{children}</Container>
+};
+
+Sidebar.FixedContainer = function SidebarFixedContainer({ children }: SidebarChildren) {
+  return <FixedContainer>{children}</FixedContainer>
+}
+
+Sidebar.Header = function SidebarHeader({ children }: SidebarChildren) {
+  return <Header>{children}</Header>
+};
+
+Sidebar.Logo = function SidebarLogo() {
+  return <Link to='/'> <img src={logo} alt="Happy" /> </Link> // Static
+};
+
+Sidebar.GroupIcon = function SidebarGroupIcon({ children }: SidebarChildren) {
+  return <GroupIcon>{children}</GroupIcon>
+}
+
+Sidebar.Icon = function SidebarIcon({ children, onClick, type, isActive }: IconProps) {
+  return <Icon isActive={isActive} onClick={onClick} type={type}>{children}</Icon>
+};
+
+Sidebar.Title = function SidebarTitle({ children }: SidebarChildren) {
+  return <Title>{children}</Title>
+};
+
+Sidebar.SubTitle = function SidebarSubTitle({ children }: SidebarChildren) {
+  return <SubTitle>{children}</SubTitle>
+};
+
+Sidebar.City = function SidebarCity({ children }: SidebarChildren) {
+  return <City>{children}</City>
+};
+
+Sidebar.State = function SidebarState({ children }: SidebarChildren) {
+  return <State>{children}</State>
+};
+
+Sidebar.Button = function SideBarButton({ children, type, onClick }: ButtonProps) {
+  return <Button type={type} onClick={onClick}>{children}</Button>
+};
+
+Sidebar.Footer = function SidebarFooter({ children }: SidebarChildren) {
+  return <Footer>{children}</Footer>
+};
+
+export default Sidebar;

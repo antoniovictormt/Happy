@@ -1,15 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { FiClock, FiInfo } from "react-icons/fi";
-import { FaWhatsapp } from "react-icons/fa";
+import { useHistory, useParams } from "react-router-dom";
 import { Map, Marker, TileLayer } from "react-leaflet";
-import { useParams } from 'react-router-dom';
+import { FaWhatsapp } from "react-icons/fa";
+import { FiClock, FiInfo, FiArrowLeft } from "react-icons/fi";
 
-import HeaderBar from "../../components/HeaderBar";
-import SideBar from '../../components/SideBar';
-import api from "../../services/api";
-import mapIcon from "../../utils/mapIcon";
+import { HeaderBar, SideBar } from '../../components';
+import { MapIcon } from '../../utils/mapIcon';
+import api from '../../services/api';
 
-import "./styles.css";
+import {
+  Container,
+  Content,
+  Details,
+  Image,
+  Images,
+  Button,
+  ImageButton,
+  DetailsContent,
+  Name,
+  Description,
+  MapContainer,
+  DetailsFooter,
+  Hr,
+  InstructionTitle,
+  OpenDetails,
+  DetailHour,
+  DetailOpenOnWeekends,
+  Contact,
+} from './styles';
 
 interface Orphanage {
   name: string,
@@ -35,6 +53,7 @@ export default function Orphanage() {
   const params = useParams<OrphanageParams>();
   const [orphanage, setOrphanage] = useState<Orphanage>();
   const [activeImageIndex, setactiveImageIndex] = useState(0);
+  const { goBack } = useHistory();
 
   useEffect(() => {
     api.get(`orphanages/${params.id}`).then(response => {
@@ -47,37 +66,45 @@ export default function Orphanage() {
   }
 
   return (
-    <div id="page-orphanage">
+    <Container>
       <HeaderBar />
-      <SideBar />
+      <SideBar.FixedContainer>
+        <SideBar.Logo />
 
-      <main>
-        <div className="orphanage-details">
-          <img src={orphanage.images[activeImageIndex].url} alt={orphanage.name} />
+        <SideBar.Footer>
+          <SideBar.Button type={'button'} onClick={goBack}>
+            <FiArrowLeft size={24} color="#FFF" />
+          </SideBar.Button>
+        </SideBar.Footer>
+      </SideBar.FixedContainer>
 
-          <div className="orphanage-details-content">
-            <h1>{orphanage.name}</h1>
-            <p>{orphanage.about}</p>
+      <Content>
+        <Details>
+          <Image src={orphanage?.images[activeImageIndex]?.url} alt={orphanage?.name} />
 
-            <div className="images">
-              {orphanage.images.map((image, index) => {
-                return (
-                  <button
-                    key={image.id}
-                    className={activeImageIndex === index ? 'active' : ''}
-                    type="button"
-                    onClick={() => {
-                      setactiveImageIndex(index);
-                    }}>
-                    {<img src={image.url} alt={orphanage.name} />}
-                  </button>
-                );
-              })}
-            </div>
+          <Images>
+            {orphanage?.images.map((image, i) => (
+              <Button
+                onClick={_ => setactiveImageIndex(i)}
+                type="button"
+                key={image.id}
+                className={activeImageIndex === i ? 'active' : ''}
+              >
+                <ImageButton src={image.url} alt={orphanage.name} />
+              </Button>
+            ))}
+          </Images>
 
-            <div className="map-container">
+          <DetailsContent>
+            <Name>{orphanage?.name}</Name>
+            <Description>
+              {orphanage?.instructions}
+            </Description>
+
+            <MapContainer>
               <Map
-                center={[orphanage.latitude, orphanage.longitude]}
+                // center={[orphanage?.latitude, orphanage?.longitude]} -> ERROR -> Alternative bellow!
+                center={[orphanage?.latitude ? orphanage.latitude : 0, orphanage?.longitude ? orphanage.longitude : 0]}
                 zoom={16}
                 style={{ width: '100%', height: 280 }}
                 dragging={false}
@@ -89,53 +116,53 @@ export default function Orphanage() {
                 <TileLayer
                   url={`https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/256/{z}/{x}/{y}@2x?access_token=${process.env.REACT_APP_MAPBOX_TOKEN}`}
                 />
-                <Marker interactive={false} icon={mapIcon} position={[orphanage.latitude, orphanage.longitude]} />
+                <Marker
+                  interactive={false}
+                  icon={MapIcon}
+                  position={[orphanage?.latitude ? orphanage.latitude : 1, orphanage?.longitude ? orphanage.longitude : 1]}
+                />
               </Map>
 
-              <footer>
-                <a target="_blank" rel="noopener noreferrer" href={`https://www.google.com/maps/dir/?api=1&destination=${orphanage.latitude},${orphanage.longitude}`}>Ver rotas no Google Maps</a>
-              </footer>
-            </div>
+              <DetailsFooter>
+                <a target="_blank" rel="noopener noreferrer" href={`https://www.google.com/maps/dir/?api=1&destination=${orphanage?.latitude},${orphanage?.longitude}`}>
+                  Ver rotas no Google Maps
+                </a>
+              </DetailsFooter>
+            </MapContainer>
 
-            <hr />
+            <Hr />
 
-            <h2>Instruções para visita</h2>
-            <p>{orphanage.instructions}</p>
+            <InstructionTitle>Instruções para visita</InstructionTitle>
+            <Description>{orphanage?.instructions}</Description>
 
-            <div className="open-details">
-              <div className="hour">
+            <OpenDetails>
+              <DetailHour>
                 <FiClock size={32} color="#15B6D6" />
                 Segunda à Sexta <br />
-                {orphanage.opening_hours}
-              </div>
-              {orphanage.open_on_weekends ? (
-                <div className="open-on-weekends">
+                {orphanage?.opening_hours}
+              </DetailHour>
+              {orphanage?.open_on_weekends ?
+                <DetailOpenOnWeekends>
                   <FiInfo size={32} color="#39CC83" />
-                Atendemos <br />
-                fim de semana
-                </div>
-              ) : (
-                  <div className="open-on-weekends dont-open">
-                    <FiInfo size={32} color="#ff669d" />
-                Não atendemos <br />
-                fim de semana
-                  </div>
-                )}
-            </div>
+                  Atendemos <br />
+                  fim de semana
+                </DetailOpenOnWeekends>
+                :
+                <DetailOpenOnWeekends className="dont-open">
+                  <FiInfo size={32} color="#FF669D" />
+                  Não atendemos <br />
+                  fim de semana
+                </DetailOpenOnWeekends>
+              }
+            </OpenDetails>
 
-            <div className="whatsapp-button">
-              <a href={`https://wa.me/${orphanage.whatsapp}`}
-                target='_blank'
-                rel="noopener noreferrer">
-                <button type="button" className="contact-button">
-                  <FaWhatsapp size={20} color="#FFF" />
-                  Entrar em contato
-              </button>
-              </a>
-            </div>
-          </div>
-        </div>
-      </main>
-    </div>
+            <Contact href={`https://wa.me/+55${orphanage?.whatsapp}`} target='_blank' rel="noopener noreferrer">
+              <FaWhatsapp size={20} />
+              Entrar em contato
+            </Contact>
+          </DetailsContent>
+        </Details>
+      </Content>
+    </Container>
   );
 }
