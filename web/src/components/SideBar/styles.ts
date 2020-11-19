@@ -1,5 +1,5 @@
 import styled, { StyledComponent } from 'styled-components';
-import { Link as ReactRouterLink } from 'react-router-dom'
+import { Link as ReactRouterLink } from 'react-router-dom';
 
 export const Container = styled.div`
   max-width: 440px;
@@ -54,7 +54,7 @@ export const Icon: StyledComponent<"button", any, { isActive: boolean }, never> 
         color: ${({ isActive }: IconProps) => isActive ? '#fff' : '#fff'};
     };
     &:hover {
-      background: #66e92887;
+      background: linear-gradient(45deg, #66e92887 0%, #00a3ff 100%);
         svg {
             color: #fff;
         };

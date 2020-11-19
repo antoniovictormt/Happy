@@ -119,7 +119,6 @@ export default function ApproveOrphanage() {
 
   return (
     <Container>
-      <HeaderBar />
       <SideBar.FixedContainer>
         <SideBar.Logo />
 
@@ -129,6 +128,13 @@ export default function ApproveOrphanage() {
           </SideBar.Button>
         </SideBar.Footer>
       </SideBar.FixedContainer>
+
+      <HeaderBar>
+        <HeaderBar.Logo />
+        <HeaderBar.Icon isActive={false} type="button" onClick={history.goBack}>
+          <FiArrowLeft size={24} />
+        </HeaderBar.Icon>
+      </HeaderBar>
 
       <Content>
         <Form.FormWrapper>

@@ -67,16 +67,21 @@ export default function Orphanage() {
 
   return (
     <Container>
-      <HeaderBar />
       <SideBar.FixedContainer>
         <SideBar.Logo />
-
         <SideBar.Footer>
           <SideBar.Button type={'button'} onClick={goBack}>
             <FiArrowLeft size={24} color="#FFF" />
           </SideBar.Button>
         </SideBar.Footer>
       </SideBar.FixedContainer>
+
+      <HeaderBar>
+        <HeaderBar.Logo />
+        <HeaderBar.Button isActive={false} type="button" onClick={goBack}>
+          <FiArrowLeft size={24} />
+        </HeaderBar.Button>
+      </HeaderBar>
 
       <Content>
         <Details>

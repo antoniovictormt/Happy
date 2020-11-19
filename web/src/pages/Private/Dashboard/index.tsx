@@ -2,7 +2,7 @@ import React, { /* useContext, */ useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { FiMapPin, FiPower, FiAlertCircle } from 'react-icons/fi';
 
-import { MiniMap, SideBar } from '../../../components';
+import { HeaderBar, MiniMap, SideBar } from '../../../components';
 import api from '../../../services/api';
 
 import notFound from '../../../assets/not-found.svg';
@@ -119,13 +119,28 @@ export default function Dashboard() {
             </SideBar.Icon>
           </SideBar.FixedContainer>
 
+          <HeaderBar>
+            <HeaderBar.Logo />
+            <HeaderBar.GroupIcon>
+              <HeaderBar.Icon isActive={orphanagesContainer === 0 ? true : false} type="button" onClick={switchContainer}>
+                <FiMapPin size={24} />
+              </HeaderBar.Icon>
+              <HeaderBar.Icon isActive={orphanagesContainer === 1 ? true : false} type="button" onClick={switchContainer}>
+                <FiAlertCircle size={24} />
+              </HeaderBar.Icon>
+            </HeaderBar.GroupIcon>
+            <HeaderBar.Icon isActive={false} type="button" onClick={logout}>
+              <FiPower size={24} />
+            </HeaderBar.Icon>
+          </HeaderBar>
+
           <Content>
             {orphanagesContainer === 0 ?
               (
                 <OrphanagesContainer>
                   <TitleContainer>
                     <Title>
-                      Orfanatos cadastrados
+                      Orfanatos Cadastrados
                     </Title>
                     <OrphanagesTotal>{orphanages.length} Orfanatos Cadastrados</OrphanagesTotal>
                   </TitleContainer>

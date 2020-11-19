@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { FormHandles } from '@unform/core';
 import { useHistory } from 'react-router-dom';
 import { FiArrowLeft, FiCheck } from 'react-icons/fi';
+import * as Yup from 'yup';
 
 import { Banner } from '../../components/';
 
@@ -16,6 +18,7 @@ import {
   Check,
   Label,
   Help,
+  Button,
   ButtonRegister
 } from './styles';
 
@@ -53,11 +56,11 @@ export default function Signin() {
             <Check type="button" onClick={_ => setRemember(!remember)} style={{ backgroundColor: remember ? '#37C77F' : '#F5F8FA' }}>
               <FiCheck className='Button' size={18} color={'rgb(245, 248, 250)'} />
             </Check>
-            <Label>Lembrar me</Label>
+            <Label>Lembrar-me</Label>
             <Help to="/forgot-password">Esqueceu sua senha?</Help>
           </CheckWrapper>
 
-          <ButtonRegister to="/dashboard">Entrar</ButtonRegister>
+          <Button>Entrar</Button>
           <ButtonRegister to="/register">Criar uma Conta</ButtonRegister>
         </Form>
       </Content>

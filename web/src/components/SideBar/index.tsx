@@ -14,7 +14,8 @@ import {
   City,
   Button
 } from './styles';
-import logo from '../../assets/map-marker.svg';
+
+import mapMarker from '../../assets/map-marker.svg';
 
 interface SidebarChildren {
   children: React.ReactNode;
@@ -47,7 +48,7 @@ Sidebar.Header = function SidebarHeader({ children }: SidebarChildren) {
 };
 
 Sidebar.Logo = function SidebarLogo() {
-  return <Link to='/'> <img src={logo} alt="Happy" /> </Link> // Static
+  return <Link to='/'> <img src={mapMarker} alt="Happy" /> </Link> // Static
 };
 
 Sidebar.GroupIcon = function SidebarGroupIcon({ children }: SidebarChildren) {
